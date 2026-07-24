@@ -16,3 +16,11 @@
 2026-07-24 23:13:35 INFO  Handling DELETE /api/session/882 request
 2026-07-24 23:13:36 WARN  Certificate expires in 10 days
 2026-07-24 23:13:37 ERROR Unhandled exception in OrderController.process(): NullPointerException
+2026-07-24 23:30:28 INFO  Handling GET /api/products request
+2026-07-24 23:30:29 ERROR Payment gateway timeout: no response from upstream
+2026-07-24 23:30:30 WARN  Slow query detected: SELECT * FROM orders (2.3s)
+2026-07-24 23:30:31 INFO  Cache refreshed for /api/products
+2026-07-24 23:30:32 ERROR Redis connection refused: 127.0.0.1:6379
+2026-07-24 23:30:33 INFO  Handling DELETE /api/session/882 request
+2026-07-24 23:30:34 WARN  Certificate expires in 10 days
+2026-07-24 23:30:35 ERROR Unhandled exception in OrderController.process(): NullPointerException

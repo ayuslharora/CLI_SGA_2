@@ -4,3 +4,10 @@
 2026-07-24 23:13:31 ERROR Payment gateway timeout: no response from upstream
 2026-07-24 23:13:34 ERROR Redis connection refused: 127.0.0.1:6379
 2026-07-24 23:13:37 ERROR Unhandled exception in OrderController.process(): NullPointerException
+2026-07-24 10:00:31 ERROR Disk write failed: /var/log/app/data.bin: No space left on device
+2026-07-24 23:13:31 ERROR Payment gateway timeout: no response from upstream
+2026-07-24 23:13:34 ERROR Redis connection refused: 127.0.0.1:6379
+2026-07-24 23:13:37 ERROR Unhandled exception in OrderController.process(): NullPointerException
+2026-07-24 23:30:29 ERROR Payment gateway timeout: no response from upstream
+2026-07-24 23:30:32 ERROR Redis connection refused: 127.0.0.1:6379
+2026-07-24 23:30:35 ERROR Unhandled exception in OrderController.process(): NullPointerException
