@@ -1,0 +1,4 @@
+sha256sum: sample_submissions/s7_locked.txt: Permission denied
+ERROR: could not read/hash 'sample_submissions/s7_locked.txt' (permission denied?)
+DUPLICATE: 'sample_submissions/s2.txt' matches an earlier submission (sha256 03662fbc441aa9d7cc32fcc1fa724530ab170877ecd78f52163f416f051f0580)
+DUPLICATE: 'sample_submissions/s4.txt' matches an earlier submission (sha256 4c4f5723bd1b6338a98ecebef0a3f1898233482c4fa11927deed411c81b5aee5)

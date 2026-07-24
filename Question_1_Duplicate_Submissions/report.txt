@@ -1,0 +1,9 @@
+Submission Deduplication Report
+Generated: Fri Jul 24 23:13:34 IST 2026
+Source directory: sample_submissions
+Backup directory: backup
+--------------------------------
+Files processed : 7
+Unique files    : 4
+Duplicate files : 2
+Files backed up : 4

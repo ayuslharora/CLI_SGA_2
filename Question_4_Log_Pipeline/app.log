@@ -1,0 +1,18 @@
+2026-07-24 10:00:01 INFO  Server started on port 8080
+2026-07-24 10:00:02 INFO  Loaded configuration from /etc/app/config.yaml
+2026-07-24 10:00:05 ERROR Database connection failed: timeout after 30s
+2026-07-24 10:00:08 WARN  Retrying database connection (attempt 2/5)
+2026-07-24 10:00:10 INFO  Database connection established
+2026-07-24 10:00:15 INFO  Handling GET /api/users request
+2026-07-24 10:00:18 ERROR NullPointerException in UserService.getProfile()
+2026-07-24 10:00:22 WARN  High memory usage detected: 85% of heap used
+2026-07-24 10:00:27 INFO  Handling POST /api/orders request
+2026-07-24 10:00:31 ERROR Disk write failed: /var/log/app/data.bin: No space left on device
+2026-07-24 23:13:30 INFO  Handling GET /api/products request
+2026-07-24 23:13:31 ERROR Payment gateway timeout: no response from upstream
+2026-07-24 23:13:32 WARN  Slow query detected: SELECT * FROM orders (2.3s)
+2026-07-24 23:13:33 INFO  Cache refreshed for /api/products
+2026-07-24 23:13:34 ERROR Redis connection refused: 127.0.0.1:6379
+2026-07-24 23:13:35 INFO  Handling DELETE /api/session/882 request
+2026-07-24 23:13:36 WARN  Certificate expires in 10 days
+2026-07-24 23:13:37 ERROR Unhandled exception in OrderController.process(): NullPointerException

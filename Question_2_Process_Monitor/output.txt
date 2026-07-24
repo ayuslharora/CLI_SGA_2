@@ -1,0 +1,76 @@
+======================================================================
+COMMAND: cc -Wall -Wextra -o monitor monitor.c
+======================================================================
+(no output — clean compile, exit code 0, no warnings)
+
+======================================================================
+COMMAND: time ./monitor
+======================================================================
+[parent] Starting monitor, launching 4 worker processes
+[parent] Spawned child 0 (pid=31494)
+[child 0] pid=31494 handling request, will finish in 1s
+[parent] Spawned child 1 (pid=31495)
+[child 1] pid=31495 handling request, will finish in 2s
+[parent] Spawned child 2 (pid=31496)
+[child 2] pid=31496 simulating an unresponsive worker (hanging, ignoring SIGTERM)
+[parent] Spawned child 3 (pid=31497)
+[child 3] pid=31497 handling request, will finish in 2s
+[child 0] pid=31494 finished normally
+[parent] Child 0 (pid=31494) reaped, exited normally (code=0)
+[child 1] pid=31495 finished normally
+[child 3] pid=31497 finished normally
+[parent] Child 1 (pid=31495) reaped, exited normally (code=0)
+[parent] Child 3 (pid=31497) reaped, exited normally (code=0)
+[parent] Child 2 (pid=31496) unresponsive (running >= 3s) -> sending SIGTERM
+[parent] Child 2 (pid=31496) still alive after 2s grace period -> escalating to SIGKILL
+[parent] Child 2 (pid=31496) reaped, killed by signal 9
+[parent] All 4 children reaped, no zombies remain. Monitor exiting.
+
+./monitor  0.00s user 0.00s system 0% cpu 5.597 total
+
+======================================================================
+COMMAND (background run, to inspect ps mid-execution):
+  ./monitor > /tmp/bg_run_out.txt 2>&1 &
+  sleep 1.3
+  ps -axo pid,ppid,stat,command | awk 'NR==1 || $4 ~ /monitor/'
+  sleep 5
+  ps -axo pid,ppid,stat,command | awk 'NR==1 || $4 ~ /monitor/'
+======================================================================
+--- ps snapshot while running (t ~ 1.3s) ---
+  PID  PPID STAT COMMAND
+32030     1 SN   ./monitor
+32036 32030 SN   ./monitor
+32037 32030 SN   ./monitor
+32038 32030 SN   ./monitor
+
+(child pid=32035, the 1-second worker, already finished and was reaped
+before this snapshot was taken, so only the parent (32030) and the three
+still-running children (32036, 32037, 32038) show up here — no zombie
+('Z') state processes are present)
+
+--- ps snapshot after completion ---
+  PID  PPID STAT COMMAND
+
+(header only — every monitor process, including the previously
+unresponsive child, is completely gone: no leftover or zombie processes)
+
+--- full captured run output from this background run ---
+[parent] Starting monitor, launching 4 worker processes
+[parent] Spawned child 0 (pid=32035)
+[child 0] pid=32035 handling request, will finish in 1s
+[parent] Spawned child 1 (pid=32036)
+[child 1] pid=32036 handling request, will finish in 2s
+[parent] Spawned child 2 (pid=32037)
+[child 2] pid=32037 simulating an unresponsive worker (hanging, ignoring SIGTERM)
+[parent] Spawned child 3 (pid=32038)
+[child 3] pid=32038 handling request, will finish in 2s
+[child 0] pid=32035 finished normally
+[parent] Child 0 (pid=32035) reaped, exited normally (code=0)
+[child 1] pid=32036 finished normally
+[child 3] pid=32038 finished normally
+[parent] Child 1 (pid=32036) reaped, exited normally (code=0)
+[parent] Child 3 (pid=32038) reaped, exited normally (code=0)
+[parent] Child 2 (pid=32037) unresponsive (running >= 3s) -> sending SIGTERM
+[parent] Child 2 (pid=32037) still alive after 2s grace period -> escalating to SIGKILL
+[parent] Child 2 (pid=32037) reaped, killed by signal 9
+[parent] All 4 children reaped, no zombies remain. Monitor exiting.
